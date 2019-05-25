@@ -19,16 +19,18 @@ package dev.m13d.guesstheword.screens.game
 // TODO (02) Create the GameViewModel class, extending ViewModel
 // TODO (03) Add init and override onCleared; Add log statements to both
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
 
 /**
  * ViewModel containing all the logic needed to run the game
  */
 class GameViewModel : ViewModel() {
     // The current word
-    var word = ""
+    val word = MutableLiveData<String>()
+
 
     // The current score
-    var score = 0
+    val score = MutableLiveData<Int>()
 
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
@@ -36,6 +38,7 @@ class GameViewModel : ViewModel() {
     init {
         resetList()
         nextWord()
+        score.value = 0
     }
 
     private fun resetList() {
@@ -73,19 +76,19 @@ class GameViewModel : ViewModel() {
         if (wordList.isEmpty()) {
             // gameFinished() should happen here
         } else {
-            word = wordList.removeAt(0)
+            word.value = wordList.removeAt(0)
         }
     }
 
     /** Methods for buttons presses **/
 
     fun onSkip() {
-        score--
+        score.value = (score.value)?.minus(1)
         nextWord()
     }
 
     fun onCorrect() {
-        score++
+        score.value = (score.value)?.plus(1)
         nextWord()
     }
 }
