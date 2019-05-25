@@ -17,6 +17,8 @@
 package dev.m13d.guesstheword.screens.game
 
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.ViewModelProviders
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +32,7 @@ import dev.m13d.guesstheword.databinding.GameFragmentBinding
  * Fragment where the game is played
  */
 class GameFragment : Fragment() {
+    private lateinit var viewModel: GameViewModel
 
     // The current word
     private var word = ""
@@ -55,6 +58,9 @@ class GameFragment : Fragment() {
 
         // TODO (04) Create and initialize a GameViewModel, using ViewModelProviders; Add a log
         // statement
+        // Get the viewmodel
+        Log.i("GameFragment", "Called ViewModelProviders.of")
+        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
         resetList()
         nextWord()
