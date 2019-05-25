@@ -16,8 +16,6 @@
 
 package dev.m13d.guesstheword.screens.game
 
-// TODO (02) Create the GameViewModel class, extending ViewModel
-// TODO (03) Add init and override onCleared; Add log statements to both
 import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
